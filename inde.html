@@ -1,0 +1,27 @@
+<h1>🚨 Disaster Alert Dashboard</h1>
+
+<table border="1" id="table">
+<tr>
+<th>Title</th>
+<th>Risk</th>
+<th>Time</th>
+</tr>
+</table>
+
+<script>
+async function fetchData() {
+    const response = await fetch("https://wkr1vxjje5.execute-api.us-east-1.amazonaws.com/data");
+    const data = await response.json();
+
+    let table = document.getElementById("table");
+
+    data.forEach(item => {
+        let row = table.insertRow();
+        row.insertCell(0).innerText = item.title;
+        row.insertCell(1).innerText = item.risk;
+        row.insertCell(2).innerText = item.time;
+    });
+}
+
+fetchData();
+</script>
